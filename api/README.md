@@ -1,4 +1,4 @@
-# Sushi Scaffold
+# Polarbear Scaffold
 
 A scaffold for a ES2015, Express node api.
 

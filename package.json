@@ -1,5 +1,5 @@
 {
-  "name": "sushi-scaffold",
+  "name": "polarbear-scaffold",
   "version": "1.0.0",
   "description": "A scaffold for a ES2015, React, Redux, Webpack, Express node app",
   "dependencies": {
