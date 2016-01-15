@@ -1,12 +1,8 @@
 #!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
-var app = require('../app');
-var debug = require('debug')('mood-polarbear:server');
-var http = require('http');
+import app from '../app';
+import debug from 'debug';
+import http from 'http';
+const theDebugger = debug('api:server');
 
 /**
  * Get port from environment and store in Express.
@@ -86,5 +82,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  theDebugger('Listening on ' + bind);
 }
