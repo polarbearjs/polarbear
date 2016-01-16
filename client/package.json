@@ -1,0 +1,10 @@
+{
+  "author": "Ben Jancke <benjanecke@gmail.com>",
+  "license": "MIT",
+  "name": "polarbear-client",
+  "version": "1.0.0",
+  "description": "A scaffold for a ES2015, React, Redux, Webpack app.",
+  "main": "index.js",
+  "scripts": {
+  }
+}
