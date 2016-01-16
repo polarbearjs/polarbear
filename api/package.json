@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node ./bin/www",
-    "test": "babel-node test/*.js | faucet"
+    "test": "babel-node test/*.js",
+    "test-dev": "babel-node test/*.js | faucet",
+    "lint": "eslint app.js routes/ test/"
   },
   "dependencies": {
     "babel-core": "^6.4.0",
@@ -19,6 +21,8 @@
   },
   "devDependencies": {
     "blue-tape": "^0.1.11",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^3.1.0",
     "faucet": "0.0.1"
   }
 }
