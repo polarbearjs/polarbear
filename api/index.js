@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-// import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
@@ -9,13 +8,15 @@ import engine from 'ejs-locals';
 
 const app = express();
 
-// This has to be here :| LAAAAME!
-app.set('views', path.join(__dirname, 'views'));
-app.set('engine', engine);
-app.set('view engine', 'ejs');
+// this will be used to tell the server when to stop taking connections
+app.set('shutting-down', false);
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use((req, res, next) => {
+  // Timeout connection so the client tries to reconnect once the server is back up
+  if (app.settings['shutting-down']) req.connection.setTimeout(1);
+  return next();
+});
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,7 +38,7 @@ if (app.get('env') === 'development') {
   // development error handler
   app.use((err, req, res) => {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err,
     });
@@ -47,7 +48,7 @@ if (app.get('env') === 'development') {
   // no stacktraces leaked to user
   app.use((err, req, res) => {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: {},
     });

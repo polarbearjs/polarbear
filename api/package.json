@@ -1,7 +1,9 @@
 {
+  "author": "Ben Jancke <benjanecke@gmail.com>",
   "name": "api",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
     "start": "babel-node ./bin/www",
     "test": "babel-node test/*.js",
