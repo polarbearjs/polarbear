@@ -10,7 +10,7 @@ A scaffold for a ES2015, Express node api.
 # Getting started
 
 ```
-npm install -g babel-cli
+npm install -g babel-cli && npm install
 cp .env.example .env
 env $(cat .env) npm start // starts a server
 ```
