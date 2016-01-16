@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node ./bin/www"
+    "start": "babel-node ./bin/www",
+    "test": "babel-node test/*.js | faucet"
   },
   "dependencies": {
     "babel-core": "^6.4.0",
@@ -13,8 +14,11 @@
     "debug": "~2.2.0",
     "ejs-locals": "^1.0.2",
     "express": "~4.13.1",
-    "marked": "^0.3.5",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "blue-tape": "^0.1.11",
+    "faucet": "0.0.1"
   }
 }
