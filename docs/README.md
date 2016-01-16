@@ -1,3 +1,3 @@
-# Introduction
+# Table of contents
 
-Something for your troubles stranger?
+* [Getting started](/docs/getting-started.md)

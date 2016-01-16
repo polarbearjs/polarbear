@@ -1,4 +1,4 @@
-# Polarbear Scaffold
+# Polarbear Api
 
 A scaffold for a ES2015, Express node api.
 

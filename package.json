@@ -1,7 +1,7 @@
 {
   "name": "polarbear-scaffold",
   "version": "1.0.0",
-  "description": "A scaffold for a ES2015, React, Redux, Webpack, Express node app",
+  "description": "A opinionated scaffold and possibly/eventually framework for a 12factor node web application",
   "dependencies": {
     "foreman": "^1.4.1"
   },
