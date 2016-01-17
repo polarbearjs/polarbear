@@ -88,7 +88,7 @@ function shutdown() {
     process.exit(0);
   });
   setTimeout(() => {
-    log(`shutdown:Some connections left open server PID ${process.pid} on ${addr.address} at ${addr.port}`);
+    log(`shutdown:Some connections left open server PID ${process.pid} on ${addr.address} at ${addr.port}`); // eslint-disable-line max-len
     process.exit(1);
   }, suicide);
 }

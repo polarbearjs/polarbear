@@ -8,7 +8,7 @@
     "start": "./bin/www",
     "test": "babel-node test/*.js",
     "test-dev": "babel-node test/*.js | faucet",
-    "lint": "eslint app.js routes/ test/"
+    "lint": "eslint ."
   },
   "dependencies": {
     "babel-core": "^6.4.0",
