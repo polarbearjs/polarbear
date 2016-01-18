@@ -1,8 +1,7 @@
 #!/usr/bin/env babel-node
 import app from '../';
-import debug from 'debug';
 import http from 'http';
-const log = debug('api:server');
+import { server as debug } from '../lib/debug';
 
 /**
  * Normalize a port into a number, string, or false.
@@ -71,7 +70,7 @@ const server = http.createServer(app);
 
 function onListening() {
   const addr = server.address();
-  log(`Listening on ${addr.address} at ${addr.port} PID ${process.pid}`);
+  debug(`Listening on ${addr.address} at ${addr.port} PID ${process.pid}`);
 }
 
 /**
@@ -79,16 +78,16 @@ function onListening() {
  */
 
 function shutdown() {
-  log('shutdown:Attempting shutdown');
+  debug('shutdown:Attempting shutdown');
   const addr = server.address();
   const suicide = 2 * 60 * 1000; // 2 mins
   app.set('shutting-down', true);
   server.close(() => {
-    log(`shutdown:Shutting down server PID ${process.pid} on ${addr.address} at ${addr.port}`);
+    debug(`shutdown:Shutting down server PID ${process.pid} on ${addr.address} at ${addr.port}`);
     process.exit(0);
   });
   setTimeout(() => {
-    log(`shutdown:Some connections left open server PID ${process.pid} on ${addr.address} at ${addr.port}`); // eslint-disable-line max-len
+    debug(`shutdown:Some connections left open server PID ${process.pid} on ${addr.address} at ${addr.port}`); // eslint-disable-line max-len
     process.exit(1);
   }, suicide);
 }
