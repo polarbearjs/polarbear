@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./bin/www",
+    "start-with-env": "env $(cat .env) ./bin/www",
     "test": "babel-node test/*.js",
     "test-dev": "babel-node test/*.js | faucet",
     "lint": "eslint ."
