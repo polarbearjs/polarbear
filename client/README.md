@@ -2,10 +2,19 @@
 
 A scaffold for a ES2015, React, Redux, Webpack app.
 
+# Work in progress! nothing for the client will work properly yet
+
 # Requirements
 
 * node ^4.0.0
 * babel-cli
+
+```
+chmod +x bin/www // make the server executable, executable
+npm install -g babel-cli && npm install
+cp .env.example .env
+env $(cat .env) npm start // starts a server
+```
 
 ### What about hot module replacement?
 
