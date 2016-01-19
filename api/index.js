@@ -4,11 +4,13 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import routes from './routes/index';
 import errors from './routes/error-handling';
+import compression from 'compression';
 
 const app = express();
 
 // this will be used to tell the server when to stop taking connections
 app.set('shutting-down', false);
+app.use(compression());
 app.use(logger('dev'));
 app.use((req, res, next) => {
   // Timeout connection so the client tries to reconnect once the server is back up
