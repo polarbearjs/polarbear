@@ -9,7 +9,8 @@
     "start-with-env": "env $(cat .env) ./bin/www",
     "test": "tape -r babel-core/register test/**/*.js",
     "test-dev": "npm test | faucet",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "make-www-executable": "CHMOD +x ./bin/www"
   },
   "dependencies": {
     "babel-core": "^6.4.0",
