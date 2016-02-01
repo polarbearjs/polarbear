@@ -8,7 +8,6 @@ const reducer = combineReducers({
   routing: routeReducer,
 });
 
-
 const configureStore = (middleware = [], initialState = {}) => {
   return compose(
     applyMiddleware.apply([...middleware, thunkMiddleware])

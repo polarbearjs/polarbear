@@ -3,14 +3,14 @@ export default ({ rootMarkup, initialState }) => {
     <!doctype html>
     <html>
       <head>
-        <title>APPY</title>
+        <title>Polarbear</title>
       </head>
       <body>
         <div id='root'>${ rootMarkup }</div>
         <script>
           window.BOOTSTRAP_CLIENT_STATE = ${JSON.stringify(initialState)}
         </script>
-        <script src="/static/index.js"></script>
+        <script src="/app.js"></script>
       </body>
     </html>
   `;

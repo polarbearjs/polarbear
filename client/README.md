@@ -13,6 +13,7 @@ A scaffold for a ES2015, React, Redux, Webpack app.
 npm run make-www-executable
 npm install -g babel-cli && npm install
 cp .env.example .env
+npm run build // builds the app
 env $(cat .env) npm start // starts a server
 ```
 
