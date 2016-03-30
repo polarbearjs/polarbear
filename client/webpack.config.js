@@ -3,6 +3,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: [
@@ -25,8 +26,8 @@ module.exports = {
       compress: {
         warnings: false
       }
-    })
-
+    }),
+    new LiveReloadPlugin()
   ],
 
   module: {
