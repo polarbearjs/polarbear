@@ -1,6 +1,6 @@
 # Polarbear Scaffold
 
-A opinionated scaffold and possibly/eventually framework for a [12factor](12factor.net) node web application.
+A opinionated scaffold and possibly/eventually framework for a [12factor](http://12factor.net) node web application.
 
 ## Polarbear aims to <sup>[1](#12-factor-footnote)</sup>
 
@@ -18,6 +18,6 @@ A opinionated scaffold and possibly/eventually framework for a [12factor](12fact
 * Provide a way to build a api using express
 * Provide a way to build a universal client application using React
 
-<a name="12-factor-footnote">1</a>: The majority of these goals come from and are explained by the [12 factor app](12factor.net)
+<a name="12-factor-footnote">1</a>: The majority of these goals come from and are explained by the [12 factor app](http://12factor.net)
 
 ### Documentation is over [here](/docs/README.md)
