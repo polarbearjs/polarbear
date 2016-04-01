@@ -16,11 +16,11 @@
     "babel-core": "^6.4.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
-    "body-parser": "~1.13.2",
-    "compression": "^1.6.0",
     "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "morgan": "~1.6.1"
+    "good": "~6.4.0",
+    "good-console": "~5.2.0",
+    "hapi": "~13.2.2",
+    "inert": "~3.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",

@@ -1,4 +1,14 @@
-import express from 'express';
-const router = express.Router();
+export function register(server, options, next) {
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: (req, reply) => {
+      reply({ hello: 'world' });
+    },
+  });
+  next();
+}
 
-export default router;
+register.attributes = {
+  name: 'index',
+};

@@ -1,4 +1,4 @@
-import app from '../';
+import server, { createServer } from '../';
 import http from 'http';
 import { server as debug } from '../lib/debug';
 
@@ -27,10 +27,14 @@ function normalizePort(val) {
  */
 
 const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+/**
+ * Create HTTP httpServer.
+ */
+
+const httpServer = createServer({ port, http });
 
 /**
- * Event listener for HTTP server "error" event.
+ * Event listener for HTTP httpServer "error" event.
  */
 
 function onError(error) {
@@ -57,18 +61,13 @@ function onError(error) {
   }
 }
 
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Event listener for HTTP httpServer "listening" event.
  */
 
 function onListening() {
-  const addr = server.address();
+  const addr = httpServer.address();
   debug(`Listening on ${addr.address} at ${addr.port} PID ${process.pid}`);
 }
 
@@ -78,10 +77,10 @@ function onListening() {
 
 function shutdown() {
   debug('shutdown:Attempting shutdown');
-  const addr = server.address();
+  const addr = httpServer.address();
   const suicide = 2 * 60 * 1000; // 2 mins
-  app.set('shutting-down', true);
-  server.close(() => {
+  server.app.shuttingDown = true;
+  httpServer.close(() => {
     debug(`shutdown:Shutting down server PID ${process.pid} on ${addr.address} at ${addr.port}`);
     process.exit(0);
   });
@@ -95,8 +94,9 @@ function shutdown() {
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+httpServer.on('error', onError);
+httpServer.on('listening', onListening);
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
+
+httpServer.listen(port);
