@@ -11,17 +11,8 @@ A scaffold for a ES2015, React, Redux, Webpack app.
 
 ```
 npm run make-www-executable
-npm install -g babel-cli && npm install
 cp .env.example .env
 npm run build // builds the app
 env $(cat .env) npm start // starts a server
+env $(cat .env) npm start-dev // starts a dev server by default at 3000 for SSR and 8080 for livereload
 ```
-
-### What about hot module replacement?
-
-No.
-
-2 Reasons
-
-* We want dev prod parity and using a separate server just so we can have hot reloading is stupid. No we won't bake hot reloading into our prod server because it won't serve any function once the server is running on prod
-* We don't want our code littered with `module.hot.accept`, `module.hot.check`, and `module.hot.apply`

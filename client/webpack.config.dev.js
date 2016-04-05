@@ -3,12 +3,10 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var extractSass = new ExtractTextPlugin('[name].css');
-var extractCss = new ExtractTextPlugin('[name].css');
 
 module.exports = {
+  context: path.join(__dirname),
+
   entry: {
     applicationStyles: [
       './styles/application.scss',
@@ -18,23 +16,10 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production') // This has effect on the react lib size
-      }
-    }),
-    extractSass,
-    extractCss,
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
   ],
 
   module: {
@@ -48,10 +33,10 @@ module.exports = {
     }],
     loaders: [{
       test: /\.css$/,
-      loader: extractCss.extract(['css']),
+      loaders: [ 'style', 'css' ]
     }, {
       test: /\.scss$/,
-      loader: extractSass.extract(['css', 'sass']),
+      loaders: [ 'style', 'css', 'sass' ]
     }, {
       test: /\.png$/,
       loader: 'url?limit=65000&mimetype=image/png&name=public/assets/[name].[ext]',

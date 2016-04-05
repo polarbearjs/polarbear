@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+require('babel-core/register');
+require('../scripts/start-server');
+require('../scripts/start-webpack-dev-server');
