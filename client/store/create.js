@@ -1,17 +1,18 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { routeReducer } from 'react-router-redux';
+import { routerReducer } from 'react-router-redux';
 import reducers from '../reducers';
 
 const reducer = combineReducers({
   ...reducers,
-  routing: routeReducer,
+  routing: routerReducer,
 });
 
-const configureStore = (middleware = [], initialState = {}) => {
-  return compose(
-    applyMiddleware.apply([...middleware, thunkMiddleware])
-  )(createStore)(reducer, initialState);
-};
+const configureStore = (middleware = [], initialState = {}) => (
+  applyMiddleware.apply(
+    this,
+    [...middleware, thunkMiddleware]
+  )(createStore)(reducer, initialState)
+);
 
 export default configureStore;

@@ -3,6 +3,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   context: path.join(__dirname),
@@ -20,18 +21,25 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development'),
+      }
+    }),
+    new CopyWebpackPlugin([
+      { from: 'assets/index.html' }
+    ]),
   ],
 
   module: {
-    preLoaders: [{
+    loaders: [{
       test: /\.js?$/,
       exclude: /node_modules/,
       loader: 'babel',
       query: {
         cacheDirectory: true
       },
-    }],
-    loaders: [{
+    }, {
       test: /\.css$/,
       loaders: [ 'style', 'css' ]
     }, {

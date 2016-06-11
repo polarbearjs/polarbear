@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createRouter from './Routes';
+import Routes from './Routes';
 import createStore from './store/create';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { syncHistory } from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 
-const reduxRouterMiddleware = syncHistory(browserHistory);
-const store = createStore([reduxRouterMiddleware], window.BOOTSTRAP_CLIENT_STATE);
+const store = createStore([routerMiddleware(browserHistory)], window.BOOTSTRAP_CLIENT_STATE);
+const history = syncHistoryWithStore(browserHistory, store);
+
+window.store = store;
 
 ReactDOM.render(
   <Provider store={store}>
-    {createRouter({ history: browserHistory })}
+    <Routes history={history} store={store} />
   </Provider>,
   document.getElementById('root')
 );

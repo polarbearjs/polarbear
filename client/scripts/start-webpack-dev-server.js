@@ -19,11 +19,6 @@ const server = new WebpackDevServer(compiler, {
   },
   headers: { 'X-Custom-Header': 'yes' },
   stats: { colors: true },
-  proxy: {
-    '*': {
-      target: `http://localhost:${process.env.PORT}`,
-    },
-  },
 });
 
 server.listen(
