@@ -1,27 +1,49 @@
-import express from 'express';
-import path from 'path';
-import logger from 'morgan';
-import bodyParser from 'body-parser';
-import routes from './routes/index';
-import errors from './routes/error-handling';
-import compression from 'compression';
+import Hapi from 'hapi';
+import { register as indexRoutes } from './routes/index';
+import { register as staticRoutes } from './routes/static';
 
-const app = express();
+const server = new Hapi.Server();
 
-// this will be used to tell the server when to stop taking connections
-app.set('shutting-down', false);
-app.use(compression());
-app.use(logger('dev'));
-app.use((req, res, next) => {
-  // Timeout connection so the client tries to reconnect once the server is back up
-  if (app.settings['shutting-down']) req.connection.setTimeout(1);
-  return next();
-});
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(routes);
-app.use(errors);
+export function createServer({ port }) {
+  server.connection({
+    port,
+    host: '0.0.0.0',
+    router: {
+      stripTrailingSlash: true,
+    },
+  });
 
+  server.register([
+    {
+      register: require('good'),
+      options: {
+        reporters: [{
+          reporter: require('good-console'),
+          events: { ops: '*', request: '*', log: '*', response: '*', error: '*' },
+        }],
+      },
+    },
+    {
+      register: require('inert'),
+    },
+    {
+      register: indexRoutes,
+    },
+    {
+      register: staticRoutes,
+    },
+  ], (err) => {
+    if (err) {
+      throw err;
+    }
 
-export default app;
+    server.start((startErr) => {
+      if (startErr) {
+        throw startErr;
+      }
+    });
+  });
+  return server.listener;
+}
+
+export default server;
